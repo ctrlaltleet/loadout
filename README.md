@@ -17,6 +17,24 @@ During engagements, you need tools *now*. `loadout` ensures you always have your
 
 ---
 
+## Build
+
+```bash
+make all
+```
+
+Binaries land in `build/`.
+
+---
+
+## Install
+
+```bash
+go install -v github.com/ctrlaltleet/cmd/loadout@latest
+```
+
+---
+
 ## Quick Start
 
 1. **Create your config YAML**:
@@ -88,14 +106,6 @@ Builds and runs on:
 * macOS amd64 and arm64
 
 ---
-
-## Build
-
-```bash
-make all
-```
-
-Binaries land in `build/`.
 
 ## License
 
