@@ -1,4 +1,4 @@
-module loadout
+module github.com/ctrlaltleet/loadout
 
 go 1.24.6
 
