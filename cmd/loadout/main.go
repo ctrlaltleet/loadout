@@ -9,7 +9,7 @@ import (
 	"strings"
 	"sync"
 
-	"loadout/internal"
+	"github.com/ctrlaltleet/loadout/internal"
 )
 
 func main() {
