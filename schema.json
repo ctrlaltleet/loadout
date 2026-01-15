@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Loadout Config Schema",
+  "type": "object",
+  "properties": {
+    "packages": {
+      "type": "object",
+      "description": "Collection of packages keyed by package name",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "Package version string (optional)",
+            "default": ""
+          },
+          "tags": {
+            "type": "array",
+            "description": "Tags describing this package",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "global_assets": {
+            "type": "object",
+            "description": "Global assets, independent of platform",
+            "additionalProperties": {
+              "$ref": "#/$defs/asset"
+            },
+            "default": {}
+          },
+          "platform_assets": {
+            "type": "object",
+            "description": "Assets keyed by platform (GOOS_GOARCH)",
+            "patternProperties": {
+              "^(windows|linux|darwin)_(amd64|arm64)$": {
+                "$ref": "#/$defs/asset"
+              }
+            },
+            "additionalProperties": false,
+            "default": {}
+          }
+        },
+        "required": ["platform_assets", "global_assets"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["packages"],
+  "additionalProperties": false,
+  "$defs": {
+    "asset": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Download or git clone URL (supports http, https, git schemes)"
+        },
+        "hash": {
+          "type": "string",
+          "description": "Hash string in format <algo>:<value> or <algo>:none to skip validation",
+          "pattern": "^(sha256|sha512|md5):(none|[a-fA-F0-9]+)$"
+        }
+      },
+      "required": ["url", "hash"],
+      "additionalProperties": false
+    }
+  }
+}

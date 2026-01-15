@@ -1,0 +1,11 @@
+packages:
+  nmap:
+    version: "7.93"
+    tags: [scanner]
+    global_assets:
+      some_asset_key:
+        url: "git://github.com/emadshanab/Nmap-NSE-scripts-collection"
+    platform_assets:
+      linux_amd64:
+        url: "https://nmap.org/dist/nmap-7.98-setup.exe"
+        hash: "sha256:none"
